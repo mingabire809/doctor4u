@@ -24,6 +24,12 @@ import Welcome3 from '../screens/Welcome3';
 import Login from '../screens/Login';
 import SignIn from '../screens/SignIn';
 import Setup from '../screens/Setup';
+import Condition from '../screens/Condition';
+import Home from '../screens/Home';
+import Add from '../screens/Add';
+import { Ionicons } from '@expo/vector-icons';
+import Search from '../screens/Search';
+ 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -51,6 +57,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
       <Stack.Screen name="Setup" component={Setup} options={{ headerShown: false }} />
+      <Stack.Screen name="Condition" component={Condition} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -70,40 +77,42 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: 'rgba(0,152,153,255)',
+        
       }}>
+      
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Home"
+        component={Home}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: ' ',
+          headerShown: false ,
+          tabBarIcon: ({ color }) => <Ionicons name="md-home-sharp" size={30} color={color} />,
         }}
       />
+
+<BottomTab.Screen
+        name="Add"
+        component={Add}
+        options={{
+          title: ' ',
+          headerShown: false ,
+          tabBarIcon: ({ color }) => <Ionicons name="add" size={35} color={color} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          title: ' ',
+          headerShown: false ,
+          tabBarIcon: ({ color }) => <FontAwesome name="search" size={30} color={color} />,
+        }}
+      />
+      
     </BottomTab.Navigator>
   );
 }

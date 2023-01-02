@@ -77,8 +77,8 @@ export default(props)=>{
                     borderColor: 'transparent',
                     backgroundColor: 'rgba(0,152,153,255)',
                     borderRadius: 10,
-                    marginBottom: 10,
-                }} onPress={()=>props.navigation.navigate("Root")}>Complete</Button>
+                    marginBottom: 40,
+                }} onPress={()=>props.navigation.navigate("Condition")}>Complete</Button>
 
         </ScrollView>
     )
@@ -87,7 +87,7 @@ export default(props)=>{
 const styles = StyleSheet.create({
     container:{
         padding: 20,
-        paddingTop: StatusBar.currentHeight,
+        
         backgroundColor: 'transparent'
     },
     arrowContainer:{
