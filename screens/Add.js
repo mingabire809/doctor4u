@@ -21,7 +21,7 @@ export default(props)=>{
             <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}
             style={{marginBottom: 30}}
             >
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate('SingleDoctor')}>
                     <Image style={styles.doctorImage} source={Doctor1}/>
                     <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
                         <Text style={styles.title}>Dr. Mahmud Nik Hasan</Text>
@@ -31,9 +31,9 @@ export default(props)=>{
                         <Text appearance="hint">4.9 (37 Reviews)</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent}>
                     <Image style={styles.doctorImage} source={Doctor2}/>
                     <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
                         <Text style={styles.title}>Dr. Jane Cooper</Text>
@@ -43,9 +43,9 @@ export default(props)=>{
                         <Text appearance="hint">4.9 (37 Reviews)</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent}>
                     <Image style={styles.doctorImage} source={Doctor3}/>
                     <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
                         <Text style={styles.title}>Dr. Brycen Bradford</Text>
@@ -55,7 +55,7 @@ export default(props)=>{
                         <Text appearance="hint">4.9 (37 Reviews)</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.doctorContent}>
                     <Image style={styles.doctorImage} source={Doctor1}/>

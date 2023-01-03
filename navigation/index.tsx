@@ -29,6 +29,11 @@ import Home from '../screens/Home';
 import Add from '../screens/Add';
 import { Ionicons } from '@expo/vector-icons';
 import Search from '../screens/Search';
+import Appointment from '../screens/Appointment';
+import { MaterialIcons } from '@expo/vector-icons';
+import Settings from '../screens/Settings';
+import SingleDoctor from '../screens/SingleDoctor';
+import MakeAppointment from '../screens/MakeAppointment';
  
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -58,6 +63,8 @@ function RootNavigator() {
       <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
       <Stack.Screen name="Setup" component={Setup} options={{ headerShown: false }} />
       <Stack.Screen name="Condition" component={Condition} options={{ headerShown: false }} />
+      <Stack.Screen name="SingleDoctor" component={SingleDoctor} options={{ headerShown: false }} />
+      <Stack.Screen name="MakeAppointment" component={MakeAppointment} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -110,6 +117,26 @@ function BottomTabNavigator() {
           title: ' ',
           headerShown: false ,
           tabBarIcon: ({ color }) => <FontAwesome name="search" size={30} color={color} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="Appointment"
+        component={Appointment}
+        options={{
+          title: ' ',
+          headerShown: false ,
+          tabBarIcon: ({ color }) => <MaterialIcons name="book-online" size={30} color={color} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: ' ',
+          headerShown: false ,
+          tabBarIcon: ({ color }) => <Ionicons name="settings" size={30} color={color} />,
         }}
       />
       

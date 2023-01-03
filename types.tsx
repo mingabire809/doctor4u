@@ -27,6 +27,10 @@ export type RootStackParamList = {
   Home: undefined;
   Add:undefined;
   Search:undefined;
+  Appointment:undefined;
+  Settings: undefined;
+  SingleDoctor:undefined;
+  MakeAppointment:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -40,6 +44,9 @@ export type RootTabParamList = {
   Home: undefined;
   Add:undefined;
   Search:undefined;
+  Appointment:undefined;
+  Settings: undefined;
+  
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
