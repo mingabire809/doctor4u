@@ -1,8 +1,11 @@
-import { Layout, Text } from "@ui-kitten/components"
-import { StatusBar, StyleSheet, TouchableOpacity, View, Dimensions } from "react-native"
+import { Button, Layout, Text } from "@ui-kitten/components"
+import { StatusBar, StyleSheet, TouchableOpacity, View, Dimensions, ScrollView } from "react-native"
 import { AntDesign } from "@expo/vector-icons"
 import { useState } from "react"
 import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';  
 
 export default(props)=>{
     const [morning, setMorning] = useState(true)
@@ -23,7 +26,7 @@ export default(props)=>{
 
 const [hour, setHour] = useState('')
     return(
-        <Layout style={styles.container}>
+        <ScrollView style={styles.container} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
             <View style={{flexDirection: 'row', alignItems:'center'}}>
             <TouchableOpacity style={styles.arrowContainer} onPress={()=>props.navigation.goBack()}>
             <AntDesign name="arrowleft" size={30} color="black" style={{marginTop: 3, marginLeft: 3}}/>
@@ -31,7 +34,7 @@ const [hour, setHour] = useState('')
             <Text appearance="hint" style={{fontWeight: '700', fontSize: 20, marginLeft: '25%'}}>Appointment</Text>
             </View>
 
-            <Text style={{fontWeight: '700'}} appearance='hint'>10 June, Monday</Text>
+            <Text style={{fontWeight: '700', marginTop: 14}} appearance='hint'>10 June, Monday</Text>
 
             <View style={{
                 flexDirection: 'row',
@@ -107,8 +110,8 @@ const [hour, setHour] = useState('')
 
             <Text style={{marginTop: 20, fontSize: 17, fontWeight: '700'}} appearance="hint">Fees information</Text>
             <View style={styles.doctorContent}>
-                <View style={styles.square}>
-
+                <View style={styles.square2}>
+                <Ionicons name="call" size={24} color="rgba(0,152,153,255)" style={styles.icon}/>
                 </View>
                 <View>
                     <Text style={{fontSize: 20, fontWeight: '700'}} appearance="hint">Voice call</Text>
@@ -118,8 +121,8 @@ const [hour, setHour] = useState('')
             </View>
 
             <View style={styles.doctorContent}>
-                <View style={styles.square}>
-
+                <View style={styles.square2}>
+                <MaterialIcons name="message" size={24} color="rgba(0,152,153,255)" style={styles.icon}/>
                 </View>
                 <View>
                     <Text style={{fontSize: 20, fontWeight: '700'}} appearance="hint">Messaging</Text>
@@ -129,8 +132,8 @@ const [hour, setHour] = useState('')
             </View>
 
             <View style={styles.doctorContent}>
-                <View style={styles.square}>
-
+                <View style={styles.square2}>
+                <FontAwesome name="video-camera" size={24} color="rgba(0,152,153,255)" style={styles.icon}/>
                 </View>
                 <View>
                     <Text style={{fontSize: 20, fontWeight: '700'}} appearance="hint">Video call</Text>
@@ -140,8 +143,8 @@ const [hour, setHour] = useState('')
             </View>
 
             <View style={styles.doctorContent}>
-                <View style={styles.square}>
-
+                <View style={styles.square2}>
+                <FontAwesome5 name="home" size={24} color="rgba(0,152,153,255)" style={styles.icon}/>
                 </View>
                 <View>
                     <Text style={{fontSize: 20, fontWeight: '700'}} appearance="hint">House Visit</Text>
@@ -149,7 +152,9 @@ const [hour, setHour] = useState('')
                 </View>
                 <Text style={{fontSize: 20, color: 'rgba(0,152,153,255)'}}>$400</Text>
             </View>
-        </Layout>
+
+            <Button style={styles.button} onPress={()=>props.navigation.navigate("Payment")}>Payment Now</Button>
+        </ScrollView>
     )
 }
 
@@ -157,7 +162,8 @@ const styles = StyleSheet.create({
     container:{
         padding: 20,
         paddingTop: StatusBar.currentHeight,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        flex: 1
     },
     arrowContainer:{
         width: 40,
@@ -177,9 +183,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray'
     },
 
+    square2:{
+        width: 40,
+        height: 40,
+        borderRadius: 5,
+        backgroundColor: 'lightgray'
+    },
+
     doctorContent:{
         width: '100%',
-        height: 130,
+        height: 90,
         borderRadius: 20,
         borderColor: 'rgba(206,206,206,255)',
         borderWidth: 1,
@@ -190,5 +203,20 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'space-between'
     },
+
+    icon:{
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 'auto',
+        marginBottom: 'auto'
+    },
+    button:{
+        height: 55,
+        marginTop: 100,
+        marginBottom: 70,
+        backgroundColor: 'rgba(0,152,153,255)',
+        borderRadius: 10,
+        borderColor: 'transparent'
+    }
 
 })

@@ -34,6 +34,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Settings from '../screens/Settings';
 import SingleDoctor from '../screens/SingleDoctor';
 import MakeAppointment from '../screens/MakeAppointment';
+import Payment from '../screens/Payment';
  
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -65,6 +66,7 @@ function RootNavigator() {
       <Stack.Screen name="Condition" component={Condition} options={{ headerShown: false }} />
       <Stack.Screen name="SingleDoctor" component={SingleDoctor} options={{ headerShown: false }} />
       <Stack.Screen name="MakeAppointment" component={MakeAppointment} options={{ headerShown: false }} />
+      <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
