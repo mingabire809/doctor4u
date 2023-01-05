@@ -32,6 +32,11 @@ export type RootStackParamList = {
   SingleDoctor:undefined;
   MakeAppointment:undefined;
   Payment:undefined;
+  Booking1:undefined;
+  Booking2:undefined;
+  Booking3:undefined;
+  Booking4:undefined;
+  Doctors:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

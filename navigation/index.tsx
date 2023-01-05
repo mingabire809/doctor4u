@@ -35,6 +35,11 @@ import Settings from '../screens/Settings';
 import SingleDoctor from '../screens/SingleDoctor';
 import MakeAppointment from '../screens/MakeAppointment';
 import Payment from '../screens/Payment';
+import Booking1 from '../screens/Booking1';
+import Booking2 from '../screens/Booking2';
+import Booking3 from '../screens/Booking3';
+import Booking4 from '../screens/Booking4';
+import Doctors from '../screens/Doctors';
  
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -67,6 +72,11 @@ function RootNavigator() {
       <Stack.Screen name="SingleDoctor" component={SingleDoctor} options={{ headerShown: false }} />
       <Stack.Screen name="MakeAppointment" component={MakeAppointment} options={{ headerShown: false }} />
       <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
+      <Stack.Screen name="Booking1" component={Booking1} options={{ headerShown: false }} />
+      <Stack.Screen name="Booking2" component={Booking2} options={{ headerShown: false }} />
+      <Stack.Screen name="Booking3" component={Booking3} options={{ headerShown: false }} />
+      <Stack.Screen name="Booking4" component={Booking4} options={{ headerShown: false }} />
+      <Stack.Screen name="Doctors" component={Doctors} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />

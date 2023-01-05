@@ -1,5 +1,5 @@
 import { Button, Input, Text } from "@ui-kitten/components"
-import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, View } from "react-native"
+import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from "react-native"
 import Profile from '../assets/images/profile.jpeg'
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -43,29 +43,29 @@ export default(props)=>{
                 marginTop: 10
             }}
             >
-                <View style={styles.specialistContainer}>
+                <TouchableOpacity style={styles.specialistContainer} onPress={()=>props.navigation.navigate("Doctors")}>
                 <AntDesign name="hearto" size={80} color="rgba(0,152,153,255)" />
                 <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Cardio Specialist</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>27 Doctors</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.specialistContainer}>
+                <TouchableOpacity style={styles.specialistContainer} onPress={()=>props.navigation.navigate("Doctors")}>
                 <FontAwesome name="heartbeat" size={80} color="rgba(0,152,153,255)" />
                 <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Heart Issue</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>43 Doctors</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.specialistContainer}>
+                <TouchableOpacity style={styles.specialistContainer} onPress={()=>props.navigation.navigate("Doctors")}>
                 <FontAwesome5 name="tooth" size={80} color="rgba(0,152,153,255)" />
                 <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Dental Care</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>19 Doctors</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.specialistContainer}>
+                <TouchableOpacity style={styles.specialistContainer} onPress={()=>props.navigation.navigate("Doctors")}>
                 <FontAwesome name="wheelchair" size={80} color="rgba(0,152,153,255)" />
                 <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Physico Therapy</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>7 Doctors</Text>
-                </View>
+                </TouchableOpacity>
             </ScrollView>
 
             <Text style={styles.title}>Get Care</Text>
@@ -78,6 +78,7 @@ export default(props)=>{
                 borderRadius: 10,
                 
             }}
+            onPress={()=>props.navigation.navigate("Booking1")}
             >Request a Doctors Appointment</Button>
 
             <ScrollView
@@ -118,16 +119,16 @@ export default(props)=>{
 
             </ScrollView>
 
-            <View style={{
+            <TouchableOpacity style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 marginTop: 10
                 
-            }}>
+            }} onPress={()=>props.navigation.navigate("Add")}>
                 <Text style={styles.title}>Top doctors</Text>
                 <Text appearance="hint" style={{fontWeight: '700'}}>View all</Text>
-            </View>
+            </TouchableOpacity>
 
             <ScrollView
             showsHorizontalScrollIndicator={false}
@@ -137,23 +138,23 @@ export default(props)=>{
                 marginTop: 10
             }}
             >
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate("Add")}>
                     <Image source={Doctor1} style={styles.doctorImage}/>
                     <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Dr. Esther Noi</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>Heart Surgeron</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate("Add")}>
                     <Image source={Doctor2} style={styles.doctorImage}/>
                     <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Dr. Daniela M</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>Cardio Surgeron</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate("Add")}>
                     <Image source={Doctor3} style={styles.doctorImage}/>
                     <Text style={{fontSize: 18, fontWeight: '700', textAlign: 'center'}}>Dr. Carmen H</Text>
                 <Text appearance="hint" style={{textAlign: 'center'}}>Dental</Text>
-                </View>
+                </TouchableOpacity>
             </ScrollView>
             </View>
 
