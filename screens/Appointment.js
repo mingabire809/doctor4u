@@ -15,7 +15,7 @@ export default(props)=>{
         <Layout style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>My appointments</Text>
-                <TouchableOpacity style={styles.add}>
+                <TouchableOpacity style={styles.add} onPress={()=>props.navigation.navigate("Doctors")}>
                 <Ionicons name="add" size={35} color='rgba(0,152,153,255)' style={{alignSelf: 'center', marginTop: -2}}/>
                 </TouchableOpacity>
             </View>
@@ -87,7 +87,7 @@ export default(props)=>{
                     fontWeight: '700'
                 }} appearance="hint">Today - 10 June, 2020</Text>
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate("SingleAppointment")}>
                     <View>
                         <Image source={Doctor1} style={styles.doctorImage}/>
                         <View style={styles.circle}>
@@ -111,10 +111,10 @@ export default(props)=>{
                         
                     </View>
 
-                </View>
+                </TouchableOpacity>
 
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent}>
                     <View>
                         <Image source={Doctor2} style={styles.doctorImage}/>
                         <View style={styles.circle}>
@@ -138,10 +138,10 @@ export default(props)=>{
                         
                     </View>
 
-                </View>
+                </TouchableOpacity>
 
 
-                <View style={styles.doctorContent}>
+                <TouchableOpacity style={styles.doctorContent}>
                     <View>
                         <Image source={Doctor3} style={styles.doctorImage}/>
                         <View style={styles.circle}>
@@ -165,7 +165,7 @@ export default(props)=>{
                         
                     </View>
 
-                </View>
+                </TouchableOpacity>
 
 
                 <Text style={{

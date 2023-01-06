@@ -38,7 +38,7 @@ export default (props)=>{
                     <Text appearance="hint" style={{marginLeft: 10}}>Password</Text>
                 </View>
                 <Input style={styles.input} placeholder="Enter password" secureTextEntry={seen} accessoryRight={()=> seen ? <AntDesign name="eyeo" size={24} color="gray" onPress={()=>setSeen(false)}/>:<Feather name="eye-off" size={24} color="gray" onPress={()=>{setSeen(true)}}/>}/>
-                <Text style={{color: 'gray', textAlign: 'right'}}>Forgot Password?</Text>
+                <Text style={{color: 'gray', textAlign: 'right'}} onPress={()=>props.navigation.navigate('Forgot')}>Forgot Password?</Text>
                 <Button style={{
                     marginTop: 20,
                     height: 60,

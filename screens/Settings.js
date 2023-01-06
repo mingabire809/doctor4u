@@ -40,7 +40,7 @@ export default(props)=>{
                         }}>John Doe</Text>
                     </View>
 
-                    <TouchableOpacity style={styles.edit}>
+                    <TouchableOpacity style={styles.edit} onPress={()=>props.navigation.navigate("Profile")}>
                     <Ionicons name="pencil" size={24} color="rgba(0,152,153,255)" style={{marginLeft: 7, marginTop: 3}}/>
                     </TouchableOpacity>
                 </View>

@@ -40,6 +40,12 @@ import Booking2 from '../screens/Booking2';
 import Booking3 from '../screens/Booking3';
 import Booking4 from '../screens/Booking4';
 import Doctors from '../screens/Doctors';
+import SingleAppointment from '../screens/SingleAppointment';
+import Review from '../screens/Review';
+import Profile from '../screens/Profile';
+import Forgot from '../screens/Forgot';
+import Otp from '../screens/Otp';
+import Recovery from '../screens/Recovery';
  
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -77,6 +83,12 @@ function RootNavigator() {
       <Stack.Screen name="Booking3" component={Booking3} options={{ headerShown: false }} />
       <Stack.Screen name="Booking4" component={Booking4} options={{ headerShown: false }} />
       <Stack.Screen name="Doctors" component={Doctors} options={{ headerShown: false }} />
+      <Stack.Screen name="SingleAppointment" component={SingleAppointment} options={{ headerShown: false }} />
+      <Stack.Screen name="Review" component={Review} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+      <Stack.Screen name="Forgot" component={Forgot} options={{ headerShown: false }} />
+      <Stack.Screen name="Otp" component={Otp} options={{ headerShown: false }} />
+      <Stack.Screen name="Recovery" component={Recovery} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
