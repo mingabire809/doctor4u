@@ -34,7 +34,7 @@ export default(props)=>{
                 backgroundColor: 'rgba(0,152,153,255)',
                 borderRadius: 10,
                 borderColor: 'transparent'
-            }} onPress={()=>setVisible(false)}>Contact Doctor</Button>
+            }} onPress={()=>props.navigation.navigate('Root')}>Contact Doctor</Button>
         </View>:null}
         
         <ScrollView style={styles.container}>

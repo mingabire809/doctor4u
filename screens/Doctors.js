@@ -16,7 +16,7 @@ export default(props)=>{
             <AntDesign name="arrowleft" size={30} color="black" style={{marginTop: 3, marginLeft: 3}}/>
             </TouchableOpacity>
 
-            <Text style={styles.title}>Nearby Doctors</Text>
+            <Text style={styles.title}>Doctors who can help you</Text>
             </View>
             <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}
             style={{marginBottom: 30}}
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         backgroundColor: 'transparent',
         borderRadius: 10,
-        marginRight: Dimensions.get("screen").width /5
+        marginRight: Dimensions.get("screen").width /10
     },
     doctorImage:{
         width: 100,

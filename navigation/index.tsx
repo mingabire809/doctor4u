@@ -46,6 +46,11 @@ import Profile from '../screens/Profile';
 import Forgot from '../screens/Forgot';
 import Otp from '../screens/Otp';
 import Recovery from '../screens/Recovery';
+import Favourite from '../screens/Favourite';
+import Faq from '../screens/Faq';
+import Help from '../screens/Help';
+import Symptoms from '../screens/Symptoms';
+import MySymptoms from '../screens/MySymptoms';
  
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -89,6 +94,11 @@ function RootNavigator() {
       <Stack.Screen name="Forgot" component={Forgot} options={{ headerShown: false }} />
       <Stack.Screen name="Otp" component={Otp} options={{ headerShown: false }} />
       <Stack.Screen name="Recovery" component={Recovery} options={{ headerShown: false }} />
+      <Stack.Screen name="Favourite" component={Favourite} options={{ headerShown: false }} />
+      <Stack.Screen name="Faq" component={Faq} options={{ headerShown: false }} />
+      <Stack.Screen name="Help" component={Help} options={{ headerShown: false }} />
+      <Stack.Screen name="Symptoms" component={Symptoms} options={{ headerShown: false }} />
+      <Stack.Screen name="MySymptoms" component={MySymptoms} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />

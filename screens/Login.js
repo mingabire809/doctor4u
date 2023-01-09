@@ -45,7 +45,7 @@ export default (props)=>{
                     borderColor: 'transparent',
                     backgroundColor: 'rgba(0,152,153,255)',
                     borderRadius: 10
-                }} onPress={()=>props.navigation.navigate("Root")}>Sign In</Button>
+                }} onPress={()=>props.navigation.navigate("Symptoms")}>Sign In</Button>
 
 <View style={{flexDirection: 'row', marginTop: 20}}>
     <View style={{backgroundColor: 'gray', height: 1, flex: 1, alignSelf: 'center'}} />

@@ -43,6 +43,11 @@ export type RootStackParamList = {
   Forgot:undefined;
   Otp:undefined;
   Recovery:undefined;
+  Favourite:undefined;
+  Faq:undefined;
+  Help: undefined;
+  Symptoms:undefined;
+  MySymptoms:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

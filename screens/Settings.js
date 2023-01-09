@@ -85,7 +85,7 @@ export default(props)=>{
                     </View>
                 </View>
 
-                <View style={styles.parameter}>
+                <TouchableOpacity style={styles.parameter} onPress={()=>props.navigation.navigate('Favourite')}>
                     <View style={styles.titleContent}>
                         <View style={styles.circle}>
                         <AntDesign name="heart" size={24} color="rgba(0,152,153,255)" style={{marginLeft: 8, marginTop: 7}}/>
@@ -99,9 +99,9 @@ export default(props)=>{
                     <AntDesign name="right" size={16} color="gray" />
 
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.parameter}>
+                <TouchableOpacity style={styles.parameter} onPress={()=>props.navigation.navigate('Faq')}>
                     <View style={styles.titleContent}>
                         <View style={styles.circle}>
                         <MaterialIcons name="question-answer" size={24} color="rgba(0,152,153,255)" style={{marginLeft: 8, marginTop: 7}}/>
@@ -115,9 +115,9 @@ export default(props)=>{
                     <AntDesign name="right" size={16} color="gray" />
 
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.parameter}>
+                <TouchableOpacity style={styles.parameter} onPress={()=>props.navigation.navigate('Help')}>
                     <View style={styles.titleContent}>
                         <View style={styles.circle}>
                         <AntDesign name="questioncircle" size={24} color="rgba(0,152,153,255)" style={{marginLeft: 8, marginTop: 7}}/>
@@ -131,7 +131,7 @@ export default(props)=>{
                     <AntDesign name="right" size={16} color="gray" />
 
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logout} onPress={()=>props.navigation.navigate('Login')}>
                     <View style={{flexDirection: 'row', alignSelf: 'center', marginLeft: 'auto', marginRight: 'auto'}}>
