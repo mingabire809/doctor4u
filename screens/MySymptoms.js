@@ -81,7 +81,7 @@ export default(props)=>{
                 justifyContent: 'space-evenly',
                 paddingLeft: 90,
                 paddingRight: 90
-             }} onPress={()=>props.navigation.navigate('Doctors')}>
+             }} onPress={()=>props.navigation.navigate('Doctors', {symptom: symptoms})}>
                 <Text style={{
                     fontWeight: '700',
                     color: 'white',

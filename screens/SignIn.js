@@ -18,7 +18,7 @@ export default (props)=>{
             
            </View>
            <Text style={{textAlign: 'center', fontSize: 17}} appearance="hint">Welcome to</Text>
-           <Text style={{textAlign: 'center', fontSize: 22, fontWeight: '700'}}>Doctor4you</Text>
+           <Text style={{textAlign: 'center', fontSize: 22, fontWeight: '700'}}>My Daktari</Text>
 
             <View style={styles.form}>
                 <View style={{
@@ -48,7 +48,7 @@ export default (props)=>{
                     <MaterialIcons name="phone-in-talk" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Phone number</Text>
                 </View>
-                <Input style={styles.input} keyboardType="phone-pad" placeholder="+91  Enter your phone number"/>
+                <Input style={styles.input} keyboardType="phone-pad" placeholder="+254  Enter your phone number"/>
 
                 <View style={{
                     flexDirection: 'row',

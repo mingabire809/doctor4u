@@ -7,9 +7,46 @@ import { AntDesign } from '@expo/vector-icons';
 import { useState } from "react";
 import Google from '../assets/images/google.png'
 import Facebook from '../assets/images/facebook.png'
+import * as SecureStore from 'expo-secure-store'
 
 export default (props)=>{
     const [seen, setSeen] = useState(true)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const url = 'http://192.168.0.108:3000/daktari/auth/login'
+
+    const login = ()=>{
+        const body = JSON.stringify({email, password})
+        try {
+            console.log('started')
+            fetch(url, {
+                method: 'POST',
+                body: body,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            }).then(res=>{
+                if (res.ok){
+                    return res.json()
+                }else{
+                    throw res.json()
+                }
+            }).then(json=>{
+                
+                console.log(json)
+                SecureStore.setItemAsync('token', json.token)
+                props.navigation.navigate('Symptoms')
+                
+            }).catch(err =>{
+                
+                console.log(err)
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return(
         <ScrollView style={styles.container}>
            <View style={styles.logoContainer}>
@@ -17,7 +54,7 @@ export default (props)=>{
             
            </View>
            <Text style={{textAlign: 'center', fontSize: 17}} appearance="hint">Welcome to</Text>
-           <Text style={{textAlign: 'center', fontSize: 22, fontWeight: '700'}}>Doctor4you</Text>
+           <Text style={{textAlign: 'center', fontSize: 22, fontWeight: '700'}}>My Daktari</Text>
 
             <View style={styles.form}>
                 <View style={{
@@ -27,7 +64,11 @@ export default (props)=>{
                     <FontAwesome name="envelope-o" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Email</Text>
                 </View>
-                <Input style={styles.input} placeholder="johndoe@gmail.com"/>
+                <Input style={styles.input} placeholder="johndoe@gmail.com"
+                onChangeText={text => setEmail(text)}
+                defaultValue={email}
+                keyboardType="email-address"
+                />
 
                 <View style={{
                     flexDirection: 'row',
@@ -37,7 +78,10 @@ export default (props)=>{
                     <Feather name="lock" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Password</Text>
                 </View>
-                <Input style={styles.input} placeholder="Enter password" secureTextEntry={seen} accessoryRight={()=> seen ? <AntDesign name="eyeo" size={24} color="gray" onPress={()=>setSeen(false)}/>:<Feather name="eye-off" size={24} color="gray" onPress={()=>{setSeen(true)}}/>}/>
+                <Input style={styles.input} placeholder="Enter password" 
+                onChangeText={text => setPassword(text)}
+                defaultValue={password}
+                secureTextEntry={seen} accessoryRight={()=> seen ? <AntDesign name="eyeo" size={24} color="gray" onPress={()=>setSeen(false)}/>:<Feather name="eye-off" size={24} color="gray" onPress={()=>{setSeen(true)}}/>}/>
                 <Text style={{color: 'gray', textAlign: 'right'}} onPress={()=>props.navigation.navigate('Forgot')}>Forgot Password?</Text>
                 <Button style={{
                     marginTop: 20,
@@ -45,7 +89,7 @@ export default (props)=>{
                     borderColor: 'transparent',
                     backgroundColor: 'rgba(0,152,153,255)',
                     borderRadius: 10
-                }} onPress={()=>props.navigation.navigate("Symptoms")}>Sign In</Button>
+                }} onPress={login}>Sign In</Button>
 
 <View style={{flexDirection: 'row', marginTop: 20}}>
     <View style={{backgroundColor: 'gray', height: 1, flex: 1, alignSelf: 'center'}} />

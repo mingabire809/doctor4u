@@ -5,9 +5,52 @@ import Doctor1 from '../assets/images/doctor1.jpg'
 import Doctor2 from '../assets/images/doctor2.jpg'
 import Doctor3 from '../assets/images/doctor3.jpg'
 import { Ionicons } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store'
+import { useState, useEffect } from "react";
 
 
 export default(props)=>{
+
+    const url = 'http://192.168.0.108:3000/patient/doctor'
+
+    const [doctor, setDoctor] = useState('')
+
+    const getDoctors = async()=>{
+        try {
+            
+            fetch(`${url}`,{
+                method: 'GET',
+                
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ await SecureStore.getItemAsync('token')}`
+                }
+            }).then(res => {
+                if (res.ok){
+                    return res.json()
+                } else {
+                    throw res.json()
+                }
+            }).then(json=>{
+                
+                console.log(json.doctor)
+                setDoctor(json.doctor)
+                
+                
+                
+            }).catch(err=>{
+                
+                console.log(err)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    useEffect(()=>{
+        getDoctors()
+    },[])
+
     return(
 
         <Layout style={styles.container}>
@@ -21,113 +64,25 @@ export default(props)=>{
             <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}
             style={{marginBottom: 30}}
             >
-                <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate('SingleDoctor')}>
-                    <Image style={styles.doctorImage} source={Doctor1}/>
+                {doctor.length > 0 ? <>
+                {doctor.map(detail =>{
+                    return(
+                        <TouchableOpacity style={styles.doctorContent} onPress={()=>props.navigation.navigate('SingleDoctor', {name: detail.fullName})} key={detail._id}>
+                    <Image style={styles.doctorImage} source={Doctor2}/>
                     <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Mahmud Nik Hasan</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
+                        <Text style={styles.title}>{detail.fullName}</Text>
+                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>{detail.speciality}</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                         <Ionicons name="ios-star-half" size={15} color="orange" />
                         <Text appearance="hint">4.9 (37 Reviews)</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
+                    )
+                })}
+                </>:null}
+                
 
-                <TouchableOpacity style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor2}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Jane Cooper</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor3}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Brycen Bradford</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor1}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Mahmud Nik Hasan</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor2}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Jane Cooper</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor3}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Brycen Bradford</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor1}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Mahmud Nik Hasan</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor2}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Jane Cooper</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.doctorContent}>
-                    <Image style={styles.doctorImage} source={Doctor3}/>
-                    <View style={{padding: 5, justifyContent: 'space-between', height: '100%', width: '76%'}}>
-                        <Text style={styles.title}>Dr. Brycen Bradford</Text>
-                        <Text appearance="hint" style={{fontWeight: "700", fontSize: 13}}>Therapist - Surat Medical City Medical College Hospital</Text>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Ionicons name="ios-star-half" size={15} color="orange" />
-                        <Text appearance="hint">4.9 (37 Reviews)</Text>
-                        </View>
-                    </View>
-                </View>
             </ScrollView>
         </Layout>
     )

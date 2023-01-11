@@ -4,6 +4,7 @@ import { Button, Text } from "@ui-kitten/components"
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from "react"; 
 import { AntDesign } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
 
 export default(props)=>{
 
@@ -212,15 +213,21 @@ export default(props)=>{
                     color: 'rgba(0,152,153,255)',
                     fontSize: 17
 
-                }}>John Doe</Text>
-                <Text>Welcome, Doctors4You got you.</Text>
+                }}>Dr. Phil</Text>
+                <Text>Welcome, My Daktari got you.</Text>
             </View>
             </View>
             
-            <Ionicons name="md-notifications-sharp" size={40} color="rgba(0,152,153,255)" />
+            <Ionicons name="md-notifications-sharp" size={40} color="gray" />
         </View>
         <ScrollView style={styles.container}>
-            <Text>Select how you feel</Text>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}>
+            <Fontisto name="doctor" size={40} color='rgba(0,152,153,255)' />
+            <Text style={{marginLeft: 30}}>Let's have a look at you</Text>
+            </View>
             <Text style={{
                 marginTop: 20,
                 fontWeight: '700',

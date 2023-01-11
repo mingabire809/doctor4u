@@ -1,13 +1,32 @@
 import { ImageBackground, StyleSheet, Dimensions, StatusBar, TouchableOpacity, View, ScrollView } from "react-native"
-import Doctor1 from '../assets/images/doctor1.jpg'
+import Doctor1 from '../assets/images/doctor2.jpg'
 import { AntDesign } from '@expo/vector-icons';
 import { Text } from "@ui-kitten/components"
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { Feather } from '@expo/vector-icons'; 
+import { useState, useEffect } from "react";
+import { Feather } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import Doctors from "./Doctors";
+
 
 
 export default(props)=>{
+    const [date, setDate] = useState('')
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+      };
+    
+      const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+      };
+    
+      const handleConfirm = (date) => {
+        console.warn("A date has been picked: ", date);
+        setDate(date)
+        hideDatePicker();
+      };
     const month = [
         {
       name: 'January',
@@ -104,6 +123,87 @@ const day = [
 
 const [selected, setSelected] = useState('')
 const [selectedDay, setSelectedDay] = useState('')
+const name = props.route.params;
+const symptom = name.test
+
+const url = `http://192.168.0.108:3000/patient/doctor/${name.name}`
+
+    const [doctors, setDoctor] = useState('')
+
+    const getDoctors = async()=>{
+        try {
+            console.log(symptom.symptom.symptoms)
+            
+            fetch(`${url}`,{
+                method: 'GET',
+                
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ await SecureStore.getItemAsync('token')}`
+                }
+            }).then(res => {
+                if (res.ok){
+                    return res.json()
+                } else {
+                    throw res.json()
+                }
+            }).then(json=>{
+                
+                console.log(json.doctor)
+                setDoctor(json.doctor)
+                
+                
+                
+            }).catch(err=>{
+                
+                console.log(err)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    useEffect(()=>{
+        getDoctors()
+    },[])
+
+    const symptoms = symptom.symptom.symptoms
+    const doctor = name.name
+
+    const appointment = async()=>{
+        const body = JSON.stringify({symptoms, doctor, date})
+        try {
+            
+              fetch(`http://192.168.0.108:3000/patient/appointment`, {
+                  method: 'POST',
+                  body: body,
+                  headers:{
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json',
+                      'Authorization': `Bearer ${await SecureStore.getItemAsync('token')}`
+                  }
+  
+              }).then(res=>{
+                  if (res.ok){
+                      return res.json()
+                  }else{
+                      throw res.json()
+                  }
+              }).then(json=>{
+                    
+                  console.log(json)
+                  props.navigation.navigate('Makeappointment')
+                  
+                  
+              }).catch(err=>{
+                
+                console.log(err)
+              })
+          } catch (error) {
+            
+              console.log(error)
+          }
+    }
     return(
         <ImageBackground source={Doctor1} style={styles.container}>
             <TouchableOpacity style={styles.arrowContainer} onPress={()=>props.navigation.goBack()}>
@@ -146,9 +246,9 @@ const [selectedDay, setSelectedDay] = useState('')
                 </View>
                 <ScrollView style={{marginBottom: 10}}>
                     <Text style={{fontSize: 20, fontWeight: '700'}} appearance="hint">
-                        Dr. Jane Cooper
+                        {Doctors?.fullName}
                     </Text>
-                    <Text style={{fontWeight: '700'}} appearance="hint">Heart Surgeon - Surat Medical College Hospital</Text>
+                    <Text style={{fontWeight: '700'}} appearance="hint">{doctors?.speciality}</Text>
 
                     <View style={{
                         flexDirection: 'row',
@@ -160,13 +260,32 @@ const [selectedDay, setSelectedDay] = useState('')
 
                     <Text style={{fontWeight: '700', fontSize: 16, marginTop: 5}} appearance="hint">About doctor</Text>
 
-                    <Text appearance="hint">Dr. Jane Cooper is the most Cardiologist specialist in Dhaka Medical College Hospital at Accra.
-                    She achieved several awards for her wonderful contribution in her own field. She is available for private consultation.
+                    <Text appearance="hint">{doctors?.about}
                     </Text>
 
                     <Text style={{fontWeight: '700', fontSize: 16, marginTop: 5}} appearance="hint">Working time</Text>
 
-                    <Text appearance="hint">Mon - Fri 09.00 AM - 08.00 PM</Text>
+                    <View style={{
+                        flexDirection: 'row'
+                    }}>
+                    {doctors?.workingDays?.map(
+                        days=>{
+                            return(
+                                <Text style={{
+                                    marginRight: 10
+                                }}>{days}</Text>
+                            )
+                        }
+                    )}
+                    <Text appearance="hint"> {doctors?.openingHours} - {doctors?.closingHours}</Text>
+                    </View>
+                            <Text onPress={showDatePicker}>Select Date</Text>
+                    <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="datetime"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} style={{marginTop: 10}}>
                         {month.map(day =>{
                             return(
@@ -232,7 +351,7 @@ const [selectedDay, setSelectedDay] = useState('')
                     width: 230,
                     height: 60,
                     borderRadius: 10
-                }} onPress={()=>props.navigation.navigate('MakeAppointment')}>
+                }} onPress={appointment}>
                     <Text style={{
                         color: 'white',
                         fontWeight: '700',
