@@ -11,6 +11,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default (props)=>{
     const [seen, setSeen] = useState(true)
+    const [email, setEmail] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [password, setPassword] = useState('')
     return(
         <ScrollView style={styles.container}>
            <View style={styles.logoContainer}>
@@ -28,7 +32,11 @@ export default (props)=>{
                     <FontAwesome name="envelope-o" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Email</Text>
                 </View>
-                <Input style={styles.input} placeholder="johndoe@gmail.com"/>
+                <Input style={styles.input} placeholder="johndoe@gmail.com"
+                onChangeText={text => setEmail(text)}
+                defaultValue={email}
+                keyboardType="email-address"
+                />
 
                 <View style={{
                     flexDirection: 'row',
@@ -38,7 +46,10 @@ export default (props)=>{
                     <Feather name="user" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Name</Text>
                 </View>
-                <Input style={styles.input} placeholder="Enter your full name"/>
+                <Input style={styles.input} placeholder="Enter your full name"
+                onChangeText={text => setFullName(text)}
+                defaultValue={fullName}
+                />
 
                 <View style={{
                     flexDirection: 'row',
@@ -48,7 +59,10 @@ export default (props)=>{
                     <MaterialIcons name="phone-in-talk" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Phone number</Text>
                 </View>
-                <Input style={styles.input} keyboardType="phone-pad" placeholder="+254  Enter your phone number"/>
+                <Input style={styles.input} keyboardType="phone-pad" placeholder="+254  Enter your phone number"
+                onChangeText={text => setPhoneNumber(parseInt(text))}
+                defaultValue={phoneNumber}
+                />
 
                 <View style={{
                     flexDirection: 'row',
@@ -58,7 +72,10 @@ export default (props)=>{
                     <Feather name="lock" size={24} color="rgba(0,152,153,255)" />
                     <Text appearance="hint" style={{marginLeft: 10}}>Password</Text>
                 </View>
-                <Input style={styles.input} placeholder="Enter password" secureTextEntry={seen} accessoryRight={()=> seen ? <AntDesign name="eyeo" size={24} color="gray" onPress={()=>setSeen(false)}/>:<Feather name="eye-off" size={24} color="gray" onPress={()=>{setSeen(true)}}/>}/>
+                <Input style={styles.input} placeholder="Enter password" 
+                onChangeText={text => setPassword(text)}
+                defaultValue={password}
+                secureTextEntry={seen} accessoryRight={()=> seen ? <AntDesign name="eyeo" size={24} color="gray" onPress={()=>setSeen(false)}/>:<Feather name="eye-off" size={24} color="gray" onPress={()=>{setSeen(true)}}/>}/>
                 
                 <Button style={{
                     marginTop: 50,
@@ -66,7 +83,7 @@ export default (props)=>{
                     borderColor: 'transparent',
                     backgroundColor: 'rgba(0,152,153,255)',
                     borderRadius: 10
-                }} onPress={()=>props.navigation.navigate("Setup")}>Create account</Button>
+                }} onPress={()=>props.navigation.navigate("Setup", {text1: email, text2: fullName, text3: phoneNumber, text4: password})}>Create account</Button>
 
 <View style={{flexDirection: 'row', marginTop: 20}}>
     <View style={{backgroundColor: 'gray', height: 1, flex: 1, alignSelf: 'center'}} />
